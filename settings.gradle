@@ -1,0 +1,4 @@
+rootProject.name = 'spring-consul-demo'
+include 'basic'
+include 'server'
+include 'client'

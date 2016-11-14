@@ -1,0 +1,11 @@
+server:
+  port: 9977
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        # register必须设置为false,否则系统启动的时候，会向consul注册一个服务
+        register: false
