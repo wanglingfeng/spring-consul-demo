@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+applications: consul-server
+
+turbine:
+  aggregator:
+    # turbine需要的聚合的集群的名称，
+    # 通过http://localhost:8081/turbine.stream?cluster=consul-server访问
+    clusterConfig: ${applications}
+  # 配置需要聚合的应用
+  appConfig: ${applications}
+  clusterNameExpression: new String("default")
+
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      enabled: true
+      # discovery需要时再配置，以上为必须配置项
+      discovery:
+        enabled: true
+        instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+        serviceName: consul-service
+        healthCheckinterval: 20s
+        tags: foo=bar, baz
